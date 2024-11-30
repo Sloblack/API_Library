@@ -1,0 +1,84 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    getAllGenres: [Genre]
+    getGenreById(idGenre: Int!): Genre
+
+    getAllLibrarians: [Librarian]
+    getLibrarianById(idLibrarian: Int!): Librarian
+
+    getAllUsers: [User]
+    getUserById(idUser: Int!): User
+}
+
+type Mutation {
+    addGenre(genre: GenreDto): Genre
+    updateGenre(idGenre: Int!, genre: GenreDto): Genre
+    deleteGenre(idGenre: Int!): String
+
+    addUser(user: UserInput): User
+    updateUser(idUser: Int!, user: UserInput): User
+
+    addLibrarian(librarian: LibrarianDTO): Librarian
+    updateLibrarian(idLibrarian: Int!, librarian: LibrarianDTO): Librarian
+    deleteLibrarian(idLibrarian: Int!): String
+}
+
+type Genre {
+    idGenre: ID!
+    nameGenre: String!
+}
+
+input GenreDto {
+    nameGenre: String!
+}
+
+type User {
+  idUser: ID!
+  userName: String!
+  firstSurname: String!
+  secondSurname: String
+  email: String!
+  password: String!
+  phone: String
+  userType: UserType!
+  active: Boolean!
+}
+
+input UserInput {
+  userName: String!
+  firstSurname: String!
+  secondSurname: String
+  email: String!
+  password: String!
+  phone: String
+  userType: UserType!
+  active: Boolean!
+}
+
+enum UserType {
+  student
+  professor
+}
+
+type Librarian {
+    idLibrarian: ID!
+    librarianName: String
+    firstSurname: String
+    secondSurname: String
+    email: String
+    password: String
+    phone: String
+}
+
+input LibrarianDTO {
+    librarianName: String
+    firstSurname: String
+    secondSurname: String
+    email: String
+    password: String
+    phone: String
+}
